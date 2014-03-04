@@ -7,16 +7,16 @@ Stable tag: trunk
 License: GPL2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Adds the VHX Purchase Widget to your site and automatically captures buy links to activate the VHX Buy Experience.
+Adds the VHX Purchase Widget to your site and automatically powers links to activate purchasing on VHX.
 
 == Description ==
 Integrates the VHX Purchase Widget on any Wordpress installation.
 
-Any link on any page pointing to http://yoursubdomain.vhx.tv/buy or http://yourfulldomain.com/buy will be picked up by the widget. Clicks on those links will automatically call the sliding action to purchase on your site.
+Any link on any page pointing to http://mysite.vhx.tv/buy or http://mysite.com/buy will be picked up by the widget. Clicks on those links will automatically call the sliding action to purchase on your site.
 
-If you have multiple linked sites on your page (yoursubdomain.vhx.tv and myfriend.vhx.tv), you can additionally set specific data-vhx-site attributes on individual links to override your primary one set on the script tag. It looks like this:
+If you have multiple linked sites on your page (mysite.vhx.tv and myfriend.vhx.tv), you can additionally set specific data-vhx-site attributes on individual links to override your primary one set on the script tag. It looks like this:
 
-<a href="http://drafthouse.vhx.tv/buy/the-final-member" data-vhx-site>Buy This Movie</a>
+<a href="http://mysite.vhx.tv/buy/the-final-member" data-vhx-site>Buy This Movie</a>
 
 == Installation ==
 1. Download the plugin
