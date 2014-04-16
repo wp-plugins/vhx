@@ -2,7 +2,7 @@
 Contributors: VHX
 Tags: vhx,movies,video,commerce,e-commerce,widget
 Requires at least: 1.0
-Tested up to: 3.8.1
+Tested up to: 3.9
 Stable tag: trunk
 License: GPL2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
