@@ -2,8 +2,8 @@
 /**
  * Plugin Name: VHX Purchase Widget
  * Plugin URI: http://dev.vhx.tv/docs/embeds/
- * Description: Adds the VHX Purchase Widget to your site and automatically captures buy links to activate the VHX Buy Experience.
- * Version: 1.0
+ * Description: Adds the VHX Checkout Widget to your site and automatically powers links to activate purchasing on VHX.
+ * Version: 1.1
  * Author: VHX
  * Author URI: http://vhx.tv
  * License: GPL2
@@ -42,24 +42,17 @@ class VHXSettingsPage
     public function __construct()
     {
         add_action( is_multisite() ? 'network_admin_menu' : 'admin_menu', array( $this, 'add_plugin_page' ) );
+
         // setup the actual settings page
         add_action( 'admin_init', array( $this, 'page_init' ) );
     }
 
-    /**
+
+  /**
      * Add options page
      */
     public function add_plugin_page()
     {
-        // This page will be under "Settings"
-        /*add_options_page(
-            'VHX Settings',   // side bar text
-            'VHX Purchase Widget', // page title
-            'manage_options', // permissions
-            'vhx_buy_widget', // menu slug
-            array( $this, 'create_admin_page' ) // function
-        );*/
-
          // add the menu to the left
         add_menu_page('VHX Settings', 'VHX  Widget', 'administrator', __FILE__, array($this, 'create_admin_page'));
 
@@ -73,7 +66,6 @@ class VHXSettingsPage
     {
         ?>
         <div class="wrap">
-            <?php screen_icon(); ?>
             <h2>VHX Purchase Widget Settings</h2>
             <form method="post" action="options.php">
             <?php
@@ -153,7 +145,11 @@ class VHXSettingsPage
      */
     public function print_section_info()
     {
+
         print 'Enter your VHX subdomain below.';
+        if (isset($_GET['settings-updated'])) {
+          echo '<div class="success" style="padding: 10px; margin-top: 20px; background-color: #f4f6d2; border: 1px solid #ebebeb;">Settings Updated</div>';
+        }
     }
 
     /**
@@ -223,12 +219,12 @@ class VHXPlugin {
         $this->domain = str_replace("https://","",$this->domain);
         $this->domain = str_replace("/","",$this->domain);
 
-        echo "<!-- VHX! You're a wonderful person! -->";
-        echo "<script src='" . $this->javascript_location . "' data-vhx-site='". $this->domain . "'";
+        print "\r\n\r\n<!-- VHX! You're a wonderful person! -->\r\n";
+        print "<script src='" . $this->javascript_location . "' data-vhx-site='". $this->domain . "'";
         if ($this->show_tabs == "off"){
-            echo " data-tabs-off";
+            print " data-tabs-off";
         }
-        echo "></script>";
+        print "></script>\r\n\r\n";
       }
     }
 }
