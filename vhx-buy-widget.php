@@ -3,14 +3,14 @@
  * Plugin Name: VHX Purchase Widget
  * Plugin URI: http://dev.vhx.tv/docs/embeds/
  * Description: Adds the VHX Checkout Widget to your site and automatically powers links to activate purchasing on VHX.
- * Version: 1.1
+ * Version: 1.2
  * Author: VHX
  * Author URI: http://vhx.tv
  * License: GPL2
  */
 
 
-/*  Copyright 2014  VHX  (email : contact@vhx.tv)
+/*  Copyright 2015  VHX  (email : contact@vhx.tv)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License, version 2, as
@@ -85,7 +85,6 @@ class VHXSettingsPage
     public function page_init()
     {
         register_setting( 'vhx_plugin_options', 'vhx_domain' );
-        register_setting( 'vhx_plugin_options', 'vhx_tab_visibility' );
 
         // adds a section to hold the setting, prints out intro text
         add_settings_section(
@@ -104,14 +103,6 @@ class VHXSettingsPage
             'vhx_buy_widget_section' // section name: from the 'section' from above
         );
 
-        // adds the actual settings field for "vhx_domain_field"
-        add_settings_field(
-            'vhx_tab_visibility', // MUST match the 2nd param from register_setting above
-            'Show Tabs',
-            array( $this, 'create_tabs_input' ),
-            'vhx_widget_admin', // page name: from the do_settings section
-            'vhx_buy_widget_section' // section name: from the 'section' from above
-        );
     }
 
     /**
@@ -127,15 +118,6 @@ class VHXSettingsPage
         if( isset( $input['vhx_domain'] ) )
             $new_input['vhx_domain'] = sanitize_text_field( $input['vhx_domain'] );
             // http://codex.wordpress.org/Function_Reference/sanitize_text_field
-
-        return $new_input;
-    }
-    public function sanitize_visibility( $input) {
-        $new_input = array();
-
-        if (isset ($input['vhx_tab_visibility'] ) ) {
-            $new_input['vhx_tab_visibility'] = $input['vhx_tab_visibility'];
-        }
 
         return $new_input;
     }
@@ -163,22 +145,6 @@ class VHXSettingsPage
 
     }
 
-    public function create_tabs_input()
-    {
-
-        echo '<label><input type="radio" name="vhx_tab_visibility" value="on"';
-        if (get_option('vhx_tab_visibility') == "on") {
-          echo 'checked';
-        }
-        echo '>Show Tabs</label><br>';
-        echo '<label><input type="radio" name="vhx_tab_visibility" value="off"';
-        if (get_option('vhx_tab_visibility') == "off") {
-          echo 'checked';
-        }
-        echo '>Hide Tabs</label>';
-
-
-    }
 
 }
 
@@ -196,7 +162,6 @@ class VHXPlugin {
     */
      private $javascript_location = 'https://cdn.vhx.tv/assets/api.js';
      private $domain;
-     private $show_tabs;
 
 
     /**
@@ -206,27 +171,25 @@ class VHXPlugin {
     {
       // get our subdomain
       $this->domain = get_option( 'vhx_domain' );
-      $this->show_tabs = get_option( 'vhx_tab_visibility' );
       //add your actions to the constructor!
       add_action( 'wp_head', array( $this, 'output_vhx_javascript' ) );
 
     }
     public function output_vhx_javascript() {
-      // don't do anything if VHX options aren't set
-      if (isset( $this->domain)){
+
         // TO DO: make this a regex
         $this->domain = str_replace("http://","",$this->domain);
         $this->domain = str_replace("https://","",$this->domain);
         $this->domain = str_replace("/","",$this->domain);
 
         print "\r\n\r\n<!-- VHX! You're a wonderful person! -->\r\n";
-        print "<script src='" . $this->javascript_location . "' data-vhx-site='". $this->domain . "'";
-        if ($this->show_tabs == "off"){
-            print " data-tabs-off";
+        print "<script src='" . $this->javascript_location . "'";
+        if ($this->domain != ""){
+          print " data-vhx-site='". $this->domain . "'";
         }
         print "></script>\r\n\r\n";
       }
-    }
+
 }
 
 

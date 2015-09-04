@@ -1,20 +1,20 @@
 === VHX Checkout Embed ===
 Contributors: VHX
 Tags: vhx,movies,video,commerce,e-commerce,widget
-Requires at least: 1.0
-Tested up to: 4.1
+Requires at least: 1.2
+Tested up to: 4.3
 Stable tag: trunk
 License: GPL2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Whenever someone clicks a link to buy your VHX package, the Checkout Embed will automatically trigger slide out to make a seamless checkout experience.
+Adds the VHX Checkout Embed to your site to enable a seamless checkout experience.
 
 == Description ==
 Any link on any page pointing to http://yoursubdomain.vhx.tv/buy or http://yourfulldomain.com/buy will be picked up by the checkout embed. Whenever someone clicks on those links will automatically slide out the checkout form to purchase on your site.
 
-If you have multiple linked sites on your page (yoursubdomain.vhx.tv and myfriend.vhx.tv), you can additionally set specific data-vhx-site attributes on individual links to override your primary one set on the script tag. It looks like this:
+Additionally, you can additionally set specific data-vhx-site attributes on individual links to override your primary one set on the script tag. It looks like this:
 
-<a href="http://drafthouse.vhx.tv/buy/the-final-member" data-vhx-site>Buy This Movie</a>
+&lt;a href="http://drafthouse.vhx.tv/buy/the-final-member" data-vhx-site&gt;Buy This Movie&lt;/a&gt;
 
 == Installation ==
 1. Download the plugin
@@ -29,7 +29,7 @@ If you have multiple linked sites on your page (yoursubdomain.vhx.tv and myfrien
 
 = I need help! Can you help me? =
 
-Yep, just shoot us an email at publishers@vhx.tv
+Yep, just shoot us an email at sell@vhx.tv
 
 = I want to link to another VHX site other than my primary domain? Can I do that? =
 
@@ -40,5 +40,11 @@ Yep! Just add "data-vhx-site" on any link to have it trigger the sliding action.
 1. The VHX Purchase Widget in action!
 
 == Changelog ==
+= 1.2 =
+Removed option for displaying 'tabs', always off now
+
 = 1.0  =
 Sliding VHX Purchase Widget Launch!
+
+== Changelog ==
+No known issues
